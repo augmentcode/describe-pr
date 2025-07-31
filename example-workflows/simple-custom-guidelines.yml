@@ -1,0 +1,28 @@
+# Simple Custom Guidelines Example
+# Shows basic usage of custom guidelines for PR descriptions
+
+name: Simple Custom Guidelines
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  describe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Generate PR Description
+        uses: augmentcode/describe-pr@v0
+        with:
+          augment_session_auth: ${{ secrets.AUGMENT_SESSION_AUTH }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_number: ${{ github.event.pull_request.number }}
+          repo_name: ${{ github.repository }}
+          custom_guidelines: |
+            - Always mention if this includes database migrations
+            - Highlight any breaking API changes
+            - Reference the ticket number (e.g., "Fixes #123")
+            - Include performance impact for large changes
+            - Tag @team-leads for review if this affects core functionality

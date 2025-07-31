@@ -1,0 +1,42 @@
+## Additional Guidelines for PR Descriptions:
+
+{% if custom.custom_guidelines %}
+### Custom Project Guidelines:
+{{ custom.custom_guidelines }}
+
+{% endif %}
+
+### **IMPORTANT** Tool Usage
+- You are currently checked out on the head ref of this pull request.
+- All changed files for the PR are in the context as CHANGED_FILES
+- The full set of changes for the PR are in the context as DIFF
+
+### Writing Style:
+- Use clear, professional language that technical reviewers can quickly understand
+- Use imperative mood (e.g., 'Add user authentication' not 'Adds user authentication')
+- Avoid jargon unless it's standard terminology for the domain
+- Write for an audience of experienced developers who need to understand the change quickly
+- Be specific and precise in your language - avoid vague terms like "the feature", "the setting", or "the component" when you can identify the exact name
+
+### Content Structure:
+- Lead with the most important change or impact
+- Group related changes together logically
+- Use consistent formatting throughout the description
+- For small changes (few lines, single concept), write a brief paragraph explaining the change and why it was made
+
+### Technical Details:
+- Include relevant technical context when it helps reviewers understand the scope
+- Mention breaking changes prominently if they exist
+- Reference related issues, tickets, or documentation when applicable
+
+### Description Scope:
+- Focus on the purpose and impact of the changes
+- Avoid implementation details unless they're critical to understanding
+- If the PR fixes an issue, mention what problem it solves
+- Keep it concise but informative enough for reviewers to understand the scope
+- **Match description complexity to change complexity** - simple changes should have simple descriptions
+
+### Quality Checks:
+- Ensure the description accurately reflects what the code changes accomplish
+- Verify that the description would help a reviewer understand what to focus on
+- Check that the description provides enough context for future reference
