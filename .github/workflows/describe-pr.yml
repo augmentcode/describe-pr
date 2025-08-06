@@ -22,3 +22,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pull_number: ${{ github.event.pull_request.number }}
           repo_name: ${{ github.repository }}
+          custom_guidelines: |
+            - Always reference Jira ticket numbers in brackets format (example: [ENG-123] or [PLAT-11169])
+            - Always reference Jira ticket of the PR in the PR description near the top of PR
+            - Highlight any database migrations included in the changes
+            - Highlight any backfills included in the changes
