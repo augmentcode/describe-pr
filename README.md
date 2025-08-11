@@ -80,7 +80,7 @@ Each example includes a complete workflow file that you can copy to your `.githu
 | `pull_number`          | The number of the pull request being described        | Yes      | `${{ github.event.pull_request.number }}`           |
 | `repo_name`            | The full name (owner/repo) of the repository          | Yes      | `${{ github.repository }}`                          |
 | `custom_guidelines`    | Custom guidelines for PR descriptions (optional)      | No       | See [Custom Guidelines](#custom-guidelines) section |
-| `model`                | Optional model to use for generation                  | No       | e.g. `gpt-4o`, `claude-3-5-sonnet`, etc.            |
+| `model`                | Optional model to use for generation                  | No       | e.g. `sonnet4`, from `auggie --list-models`         |
 
 ## How It Works
 
