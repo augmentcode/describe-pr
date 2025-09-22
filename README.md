@@ -81,6 +81,8 @@ Each example includes a complete workflow file that you can copy to your `.githu
 | `repo_name`            | The full name (owner/repo) of the repository          | Yes      | `${{ github.repository }}`                          |
 | `custom_guidelines`    | Custom guidelines for PR descriptions (optional)      | No       | See [Custom Guidelines](#custom-guidelines) section |
 | `model`                | Optional model to use for generation                  | No       | e.g. `sonnet4`, from `auggie --list-models`         |
+| `rules`                | JSON array of rules file paths forwarded to agent     | No       | `[".augment/rules.md"]`                             |
+| `mcp_configs`          | JSON array of MCP config paths forwarded to agent     | No       | `[".augment/mcp.md"]`                               |
 
 ## How It Works
 
