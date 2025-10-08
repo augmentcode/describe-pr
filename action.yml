@@ -55,15 +55,32 @@ runs:
       env:
         CUSTOM_GUIDELINES: ${{ inputs.custom_guidelines }}
 
-    - name: Run Augment Agent
-      uses: augmentcode/augment-agent@v0
+    - name: Setup Node.js
+      uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3f3f432c # v4.1.0
       with:
-        augment_session_auth: ${{ inputs.augment_session_auth }}
-        github_token: ${{ inputs.github_token }}
-        template_directory: "${{ github.action_path }}/templates"
-        pull_number: ${{ inputs.pull_number }}
-        repo_name: ${{ inputs.repo_name }}
-        custom_context: ${{ steps.custom_context.outputs.context }}
-        model: ${{ inputs.model }}
-        rules: ${{ inputs.rules }}
-        mcp_configs: ${{ inputs.mcp_configs }}
+        node-version: "22"
+
+    - name: Install Dependencies
+      run: npm ci --production=false
+      shell: bash
+      working-directory: ${{ github.action_path }}
+
+    - name: Build TypeScript
+      run: npm run build
+      shell: bash
+      working-directory: ${{ github.action_path }}
+
+    - name: Run Augment Agent
+      run: node ${{ github.action_path }}/dist/index.js
+      shell: bash
+      env:
+        INPUT_AUGMENT_SESSION_AUTH: ${{ inputs.augment_session_auth }}
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_PULL_NUMBER: ${{ inputs.pull_number }}
+        INPUT_REPO_NAME: ${{ inputs.repo_name }}
+        INPUT_CUSTOM_GUIDELINES: ${{ inputs.custom_guidelines }}
+        INPUT_MODEL: ${{ inputs.model }}
+        INPUT_RULES: ${{ inputs.rules }}
+        INPUT_MCP_CONFIGS: ${{ inputs.mcp_configs }}
+        INPUT_TEMPLATE_DIRECTORY: "${{ github.action_path }}/templates"
+        INPUT_CUSTOM_CONTEXT: ${{ steps.custom_context.outputs.context }}
