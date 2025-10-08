@@ -30,6 +30,10 @@ inputs:
   mcp_configs:
     description: "Optional JSON array of MCP config file paths forwarded to augment-agent."
     required: false
+  fetch_depth:
+    description: "Optional fetch depth for git checkout. Default is 0 (full history). Set to a positive number for shallow clones."
+    required: false
+    default: "0"
 
 runs:
   using: "composite"
@@ -39,7 +43,7 @@ runs:
       with:
         token: ${{ inputs.github_token }}
         ref: refs/pull/${{ inputs.pull_number }}/head
-        fetch-depth: 0
+        fetch-depth: ${{ inputs.fetch_depth }}
 
     - name: Prepare Custom Context
       id: custom_context

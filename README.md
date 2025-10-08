@@ -83,6 +83,7 @@ Each example includes a complete workflow file that you can copy to your `.githu
 | `model`                | Optional model to use for generation                  | No       | e.g. `sonnet4`, from `auggie --list-models`         |
 | `rules`                | JSON array of rules file paths forwarded to agent     | No       | `[".augment/rules.md"]`                             |
 | `mcp_configs`          | JSON array of MCP config paths forwarded to agent     | No       | `[".augment/mcp.md"]`                               |
+| `fetch_depth`          | Optional fetch depth for git checkout (default: 0)   | No       | `10` for shallow clones, `0` for full history       |
 
 ## How It Works
 
@@ -91,6 +92,20 @@ Each example includes a complete workflow file that you can copy to your `.githu
 3. **Template Rendering**: Uses Nunjucks templates to create a structured instruction for the AI
 4. **AI Processing**: Calls the Augment Agent to analyze the changes and generate a description
 5. **PR Update**: The Augment Agent updates the PR description with the generated content
+
+## Performance Optimization
+
+For large repositories with long history, you can use the `fetch_depth` parameter to speed up checkouts by limiting the git history fetched:
+
+```yaml
+- name: Generate PR Description
+  uses: augmentcode/describe-pr@v0
+  with:
+    # ... other inputs ...
+    fetch_depth: 50  # Only fetch last 50 commits
+```
+
+This can significantly reduce checkout time for repositories with extensive history while still providing enough context for PR description generation.
 
 ## Custom Guidelines
 
