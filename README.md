@@ -83,7 +83,7 @@ Each example includes a complete workflow file that you can copy to your `.githu
 | `model`                | Optional model to use for generation                  | No       | e.g. `sonnet4`, from `auggie --list-models`         |
 | `rules`                | JSON array of rules file paths forwarded to agent     | No       | `[".augment/rules.md"]`                             |
 | `mcp_configs`          | JSON array of MCP config paths forwarded to agent     | No       | `[".augment/mcp.md"]`                               |
-| `fetch_depth`          | Optional fetch depth for git checkout (default: 0)   | No       | `10` for shallow clones, `0` for full history       |
+| `fetch_depth`          | Optional fetch depth for git checkout (default: 0)    | No       | `10` for shallow clones, `0` for full history       |
 
 ## How It Works
 
@@ -102,7 +102,7 @@ For large repositories with long history, you can use the `fetch_depth` paramete
   uses: augmentcode/describe-pr@v0
   with:
     # ... other inputs ...
-    fetch_depth: 50  # Only fetch last 50 commits
+    fetch_depth: 50 # Only fetch last 50 commits
 ```
 
 This can significantly reduce checkout time for repositories with extensive history while still providing enough context for PR description generation.
