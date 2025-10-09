@@ -1,6 +1,6 @@
 {
   "name": "augment-describe-pr",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "AI-powered code assistance for setting PR descriptions using Augment's intelligent development tools",
   "main": "action.yml",
   "type": "module",
